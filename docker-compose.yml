@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+    influxdb:
+        image: influxdb:1.8.6
+        container_name: influxdb
+        ports:
+            - 8086:8086
+        environment:
+            INFLUXDB_HTTP_AUTH_ENABLED: "true"
+            INFLUXDB_DB: "iot"
+            INFLUXDB_ADMIN_USER: "dev"
+            INFLUXDB_ADMIN_PASSWORD: "dev"
+        volumes:
+            - ./volumes/influxdb:/var/lib/influxdb
+
+    grafana:
+        image: grafana/grafana:8.0.5
+        container_name: grafana
+        ports: 
+            - 3000:3000
+        environment:
+            GF_SECURITY_ADMIN_USER: dev
+            GF_SECURITY_ADMIN_PASSWORD: dev
+        volumes:
+            - ./volumes/grafana:/var/lib/grafana
+            # Below volumes related to provisioning: https://grafana.com/docs/grafana/latest/administration/provisioning/
+            # Location in Grafana specificied in dashboards.yml (provisioning)
+            - ./grafana/dashboards:/var/lib/grafana/dashboards
+            # Local structure matches structure in Grafana, e.g., dashboards and datasources
+            - ./grafana/provisioning:/etc/grafana/provisioning
+        restart: always        
+
+    telegraf:
+        image: telegraf:1.19.0
+        depends_on: 
+            - "influxdb"
+        volumes:
+            - ./telegraf.conf:/etc/telegraf/telegraf.conf
+        privileged: true
