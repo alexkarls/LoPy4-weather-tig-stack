@@ -1,6 +1,6 @@
 # Core libraries
-import json
 import hashlib
+import ujson
 import time
 import sys
 
@@ -20,7 +20,7 @@ heartbeat(False)
 
 # Config contains sensitive information used in the app
 with open('config.json') as f:
-    config = json.load(f)
+    config = ujson.load(f)
 
 ### MQTT related code
 
@@ -62,7 +62,7 @@ def send_data():
   dict['home_sensor_1'].update({ 'light': light_result})
   # Publish the dictionary over MQTT as JSON
   print(dict)
-  client.publish(TOPIC_PUB, json.dumps(dict))
+  client.publish(TOPIC_PUB, ujson.dumps(dict))
 
 # Exception loop, exit on 3600 attempts (1 hour)
 def exception_loop():
