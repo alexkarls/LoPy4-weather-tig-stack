@@ -1,3 +1,5 @@
+# Based on course resource: https://github.com/iot-lnu/applied-iot/tree/master/tig-stack
+
 version: '3.9'
 
 services:
