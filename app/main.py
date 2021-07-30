@@ -23,6 +23,7 @@ with open('config.json') as f:
     config = json.load(f)
 
 ### MQTT related code
+### Inspired by: https://github.com/iot-lnu/applied-iot/blob/master/network-examples/ccs811-bmp180-dht22-MQTT/main.py
 
 # MQQT constants
 TOPIC_PUB = 'ak223ke/devices/weather/'

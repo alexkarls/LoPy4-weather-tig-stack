@@ -1,4 +1,4 @@
-# Based on: https://github.com/iot-lnu/applied-iot/tree/master/sensor-examples
+# Based on: https://github.com/iot-lnu/applied-iot/blob/master/sensor-examples/Photoresistor/main.py
 from machine import ADC
 
 class LightSensor:

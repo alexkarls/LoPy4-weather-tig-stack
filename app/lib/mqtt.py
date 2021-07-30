@@ -1,4 +1,4 @@
-# From: https://github.com/iot-lnu/applied-iot/tree/master/network-examples/ccs811-bmp180-dht22-MQTT
+# From source: https://github.com/iot-lnu/applied-iot/tree/master/network-examples/ccs811-bmp180-dht22-MQTT
 import usocket as socket
 import ustruct as struct
 from ubinascii import hexlify

@@ -1,5 +1,5 @@
- # boot.py -- run on boot-up
- # Based on: https://github.com/iot-lnu/applied-iot/blob/master/network-examples/ccs811-bmp180-dht22-MQTT/boot.py
+# From source: https://github.com/iot-lnu/applied-iot/blob/master/network-examples/ccs811-bmp180-dht22-MQTT/boot.py
+# boot.py -- run on boot-up
 
 # Core libraries
 import json

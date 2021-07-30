@@ -1,4 +1,4 @@
-# Based on: 
+# From source: 
 # https://github.com/JurassicPork/DHT_PyCom
 # https://github.com/iot-lnu/applied-iot/tree/master/sensor-examples
 import time
