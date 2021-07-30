@@ -1,6 +1,6 @@
 # Core libraries
 import hashlib
-import ujson
+import json
 import time
 import sys
 
@@ -20,7 +20,7 @@ heartbeat(False)
 
 # Config contains sensitive information used in the app
 with open('config.json') as f:
-    config = ujson.load(f)
+    config = json.load(f)
 
 ### MQTT related code
 
@@ -32,7 +32,6 @@ CLIENT_NAME = ubinascii.hexlify(hashlib.md5(machine.unique_id()).digest()) # cre
 
 # Note: Broker has QoS set to 0 so callback not implemented
 client = MQTTClient(CLIENT_NAME, BROKER_URL, user=config['user_mqtt'], password=config['pass_mqtt'])
-
 client.connect()
 
 ### Sensor related code
@@ -62,7 +61,7 @@ def send_data():
   dict['home_sensor_1'].update({ 'light': light_result})
   # Publish the dictionary over MQTT as JSON
   print(dict)
-  client.publish(TOPIC_PUB, ujson.dumps(dict))
+  client.publish(TOPIC_PUB, json.dumps(dict))
 
 # Exception loop, exit on 3600 attempts (1 hour)
 def exception_loop():
